@@ -54,4 +54,12 @@ class ComicController extends Controller
     {
         return view('comics.show', compact('comic'));
     }
+
+    public function destroy(Comic $comic)
+    {
+        // se avete attivato i soft deletes diventa soft
+        $comic->delete();
+
+        return to_route('comics.index')->with('delete_completed', $comic);
+    }
 }
